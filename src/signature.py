@@ -3,7 +3,7 @@ import hmac
 import hashlib
 
 
-def get_auth_signature (secret, uri, body, nonce):
+def get_auth_signature(secret, uri, body, nonce):
     """
     用於製作密鑰
     :param secret: your channel secret
@@ -13,4 +13,8 @@ def get_auth_signature (secret, uri, body, nonce):
     :return:
     """
     str_sign = secret + uri + body + nonce
-    return base64.b64encode(hmac.new(str.encode(secret), str.encode(str_sign), digestmod=hashlib.sha256).digest()).decode("utf-8")
+    return base64.b64encode(
+        hmac.new(
+            str.encode(secret), str.encode(str_sign), digestmod=hashlib.sha256
+        ).digest()
+    ).decode("utf-8")
